@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -592,6 +592,16 @@ To try the example, do the following:
 3. Install hacker next to it with `npm install hacker`.
 4. Run `hacker` while in the same parent folder.
 
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
+
 ## License
 
 MIT
@@ -601,24 +611,9 @@ MIT
 [npm-url]: https://www.npmjs.com/package/liftoff
 [npm-image]: https://img.shields.io/npm/v/liftoff.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/liftoff/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/liftoff/dev?style=flat-square
+[ci-url]: https://github.com/gulpjs/$PROJECT_NAME/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/$PROJECT_NAME/dev.yml?style=flat-square
 
-[coveralls-url]: https://coveralls.io/r/gulpjs/liftoff
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/liftoff/master.svg?style=flat-square
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-[liftoff-blog]: https://bocoup.com/blog/building-command-line-tools-in-node-with-liftoff
-
-[hacker]: https://github.com/gulpjs/hacker
-[interpret]: https://github.com/gulpjs/interpret
-[flagged-respawn]: http://github.com/gulpjs/flagged-respawn
-[v8flags]: https://github.com/gulpjs/v8flags
-[fined]: https://github.com/gulpjs/fined
-
-[process-title]: http://nodejs.org/api/process.html#process_process_title
-
-[gulp-cli-index]: https://github.com/gulpjs/gulp-cli/blob/master/index.js
-[hacker-index]: https://github.com/gulpjs/js-hacker/blob/master/bin/hacker.js
+[coveralls-url]: https://coveralls.io/r/gulpjs/$PROJECT_NAME
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/$PROJECT_NAME/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
