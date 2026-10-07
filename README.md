@@ -29,19 +29,19 @@ So, everything is working great. Now you can find your local `hacker` and `Hacke
 ## Usage
 
 ```js
-const Liftoff = require('liftoff');
+const Liftoff = require("liftoff");
 
 const Hacker = new Liftoff({
-  name: 'hacker',
-  processTitle: 'hacker',
-  moduleName: 'hacker',
-  configName: 'hackerfile',
+  name: "hacker",
+  processTitle: "hacker",
+  moduleName: "hacker",
+  configName: "hackerfile",
   extensions: {
-    '.js': null,
-    '.json': null,
-    '.coffee': 'coffee-script/register',
+    ".js": null,
+    ".json": null,
+    ".coffee": "coffee-script/register",
   },
-  v8flags: ['--harmony'], // or v8flags: require('v8flags')
+  v8flags: ["--harmony"], // or v8flags: require('v8flags')
 });
 
 Hacker.prepare({}, function (env) {
@@ -69,14 +69,14 @@ These are equivalent:
 
 ```js
 const Hacker = Liftoff({
-  processTitle: 'hacker',
-  moduleName: 'hacker',
-  configName: 'hackerfile',
+  processTitle: "hacker",
+  moduleName: "hacker",
+  configName: "hackerfile",
 });
 ```
 
 ```js
-const Hacker = Liftoff({ name: 'hacker' });
+const Hacker = Liftoff({ name: "hacker" });
 ```
 
 Type: `String`
@@ -105,11 +105,11 @@ In this example Liftoff will look for `myappfile{.js,.json,.coffee}`. If a confi
 
 ```js
 const MyApp = new Liftoff({
-  name: 'myapp',
+  name: "myapp",
   extensions: {
-    '.js': null,
-    '.json': null,
-    '.coffee': 'coffee-script/register',
+    ".js": null,
+    ".json": null,
+    ".coffee": "coffee-script/register",
   },
 });
 ```
@@ -118,8 +118,8 @@ In this example, Liftoff will look for `.myapp{rc}`.
 
 ```js
 const MyApp = new Liftoff({
-  name: 'myapp',
-  configName: '.myapp',
+  name: "myapp",
+  configName: ".myapp",
   extensions: {
     rc: null,
   },
@@ -130,8 +130,8 @@ In this example, Liftoff will automatically attempt to load the correct module f
 
 ```js
 const MyApp = new Liftoff({
-  name: 'myapp',
-  extensions: require('interpret').jsVariants,
+  name: "myapp",
+  extensions: require("interpret").jsVariants,
 });
 ```
 
@@ -222,10 +222,8 @@ In this example Liftoff will look for the `.hacker.js` file relative to the `cwd
 
 ```js
 const MyApp = new Liftoff({
-  name: 'hacker',
-  configFiles: [
-    { name: '.hacker', path: '.' }
-  ],
+  name: "hacker",
+  configFiles: [{ name: ".hacker", path: "." }],
 });
 ```
 
@@ -233,11 +231,11 @@ In this example, Liftoff will look for `.hackerrc` in the home directory.
 
 ```js
 const MyApp = new Liftoff({
-  name: 'hacker',
+  name: "hacker",
   configFiles: [
     {
-      name: '.hacker',
-      path: '~',
+      name: ".hacker",
+      path: "~",
       extensions: {
         rc: null,
       },
@@ -250,11 +248,11 @@ In this example, Liftoff will look in the `cwd` and then lookup the tree for the
 
 ```js
 const MyApp = new Liftoff({
-  name: 'hacker',
+  name: "hacker",
   configFiles: [
     {
-      name: '.hacker',
-      path: '.',
+      name: ".hacker",
+      path: ".",
       findUp: true,
     },
   ],
@@ -265,12 +263,12 @@ In this example, Liftoff will use the home directory as the `cwd` and looks for 
 
 ```js
 const MyApp = new Liftoff({
-  name: 'hacker',
+  name: "hacker",
   configFiles: [
     {
-      name: '.hacker',
-      path: '.',
-      cwd: '~',
+      name: ".hacker",
+      path: ".",
+      cwd: "~",
     },
   ],
 });
@@ -283,15 +281,15 @@ Prepares the environment for your application with provided options, and invokes
 **Example Configuration w/ Options Parsing:**
 
 ```js
-const Liftoff = require('liftoff');
-const MyApp = new Liftoff({ name: 'myapp' });
-const argv = require('minimist')(process.argv.slice(2));
+const Liftoff = require("liftoff");
+const MyApp = new Liftoff({ name: "myapp" });
+const argv = require("minimist")(process.argv.slice(2));
 const onExecute = function (env, argv) {
   // Do post-execute things
 };
 const onPrepare = function (env) {
-  console.log('my environment is:', env);
-  console.log('my liftoff config is:', this);
+  console.log("my environment is:", env);
+  console.log("my liftoff config is:", this);
   MyApp.execute(env, onExecute);
 };
 MyApp.prepare(
@@ -301,25 +299,23 @@ MyApp.prepare(
     preload: argv.preload,
     completion: argv.completion,
   },
-  onPrepare
+  onPrepare,
 );
 ```
 
 **Example w/ modified environment**
 
 ```js
-const Liftoff = require('liftoff');
+const Liftoff = require("liftoff");
 const Hacker = new Liftoff({
-  name: 'hacker',
-  configFiles: [
-    { name: '.hacker', path: '.', cwd: '~' }
-  ],
+  name: "hacker",
+  configFiles: [{ name: ".hacker", path: ".", cwd: "~" }],
 });
 const onExecute = function (env, argv) {
   // Do post-execute things
 };
 const onPrepare = function (env) {
-  const config = env.config['.hacker'];
+  const config = env.config[".hacker"];
   Hacker.execute(env, config.forcedFlags, onExecute);
 };
 Hacker.prepare({}, onPrepare);
@@ -336,14 +332,14 @@ Default: `process.cwd()`
 **Example Configuration:**
 
 ```js
-const argv = require('minimist')(process.argv.slice(2));
+const argv = require("minimist")(process.argv.slice(2));
 MyApp.prepare(
   {
     cwd: argv.cwd,
   },
   function (env) {
     MyApp.execute(env, invoke);
-  }
+  },
 );
 ```
 
@@ -364,14 +360,14 @@ Default: `null`
 **Example Configuration:**
 
 ```js
-var argv = require('minimist')(process.argv.slice(2));
+var argv = require("minimist")(process.argv.slice(2));
 MyApp.prepare(
   {
     configPath: argv.myappfile,
   },
   function (env) {
     MyApp.execute(env, invoke);
-  }
+  },
 );
 ```
 
@@ -407,14 +403,14 @@ Default: `null`
 **Example Configuration:**
 
 ```js
-var argv = require('minimist')(process.argv.slice(2));
+var argv = require("minimist")(process.argv.slice(2));
 MyApp.prepare(
   {
     preload: argv.preload,
   },
   function (env) {
     MyApp.execute(env, invoke);
-  }
+  },
 );
 ```
 
@@ -445,16 +441,16 @@ A function to start your application, based on the `env` given. Optionally takes
 **Example:**
 
 ```js
-const Liftoff = require('liftoff');
-const MyApp = new Liftoff({ name: 'myapp' });
+const Liftoff = require("liftoff");
+const MyApp = new Liftoff({ name: "myapp" });
 const onExecute = function (env, argv) {
   // Do post-execute things
-  console.log('my environment is:', env);
-  console.log('my cli options are:', argv);
-  console.log('my liftoff config is:', this);
+  console.log("my environment is:", env);
+  console.log("my cli options are:", argv);
+  console.log("my liftoff config is:", this);
 };
 const onPrepare = function (env) {
-  var forcedFlags = ['--trace-deprecation'];
+  var forcedFlags = ["--trace-deprecation"];
   MyApp.execute(env, forcedFlags, onExecute);
 };
 MyApp.prepare({}, onPrepare);
@@ -481,9 +477,9 @@ A function called after your application is executed. When invoked, `this` will 
 Emitted before a module is pre-load. (But for only a module which is specified by `opts.preload`.)
 
 ```js
-var Hacker = new Liftoff({ name: 'hacker', preload: 'coffee-script' });
-Hacker.on('preload:before', function (name) {
-  console.log('Requiring external module: ' + name + '...');
+var Hacker = new Liftoff({ name: "hacker", preload: "coffee-script" });
+Hacker.on("preload:before", function (name) {
+  console.log("Requiring external module: " + name + "...");
 });
 ```
 
@@ -492,11 +488,11 @@ Hacker.on('preload:before', function (name) {
 Emitted when a module has been pre-loaded.
 
 ```js
-var Hacker = new Liftoff({ name: 'hacker' });
-Hacker.on('preload:success', function (name, module) {
-  console.log('Required external module: ' + name + '...');
+var Hacker = new Liftoff({ name: "hacker" });
+Hacker.on("preload:success", function (name, module) {
+  console.log("Required external module: " + name + "...");
   // automatically register coffee-script extensions
-  if (name === 'coffee-script') {
+  if (name === "coffee-script") {
     module.register();
   }
 });
@@ -507,9 +503,9 @@ Hacker.on('preload:success', function (name, module) {
 Emitted when a requested module cannot be preloaded.
 
 ```js
-var Hacker = new Liftoff({ name: 'hacker' });
-Hacker.on('preload:failure', function (name, err) {
-  console.log('Unable to load:', name, err);
+var Hacker = new Liftoff({ name: "hacker" });
+Hacker.on("preload:failure", function (name, err) {
+  console.log("Unable to load:", name, err);
 });
 ```
 
@@ -519,13 +515,13 @@ Emitted when a loader that matches an extension has been loaded.
 
 ```js
 var Hacker = new Liftoff({
-  name: 'hacker',
+  name: "hacker",
   extensions: {
-    '.ts': 'ts-node/register',
+    ".ts": "ts-node/register",
   },
 });
-Hacker.on('loader:success', function (name, module) {
-  console.log('Required external module: ' + name + '...');
+Hacker.on("loader:success", function (name, module) {
+  console.log("Required external module: " + name + "...");
 });
 ```
 
@@ -535,13 +531,13 @@ Emitted when no loader for an extension can be loaded. Emits an error for each f
 
 ```js
 var Hacker = new Liftoff({
-  name: 'hacker',
+  name: "hacker",
   extensions: {
-    '.ts': 'ts-node/register',
+    ".ts": "ts-node/register",
   },
 });
-Hacker.on('loader:failure', function (name, err) {
-  console.log('Unable to load:', name, err);
+Hacker.on("loader:failure", function (name, err) {
+  console.log("Unable to load:", name, err);
 });
 ```
 
@@ -551,12 +547,12 @@ Emitted when Liftoff re-spawns your process (when a [`v8flags`](#optsv8flags) is
 
 ```js
 var Hacker = new Liftoff({
-  name: 'hacker',
-  v8flags: ['--harmony'],
+  name: "hacker",
+  v8flags: ["--harmony"],
 });
-Hacker.on('respawn', function (flags, child) {
-  console.log('Detected node flags:', flags);
-  console.log('Respawned to PID:', child.pid);
+Hacker.on("respawn", function (flags, child) {
+  console.log("Detected node flags:", flags);
+  console.log("Respawned to PID:", child.pid);
 });
 ```
 
