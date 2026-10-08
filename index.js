@@ -112,7 +112,7 @@ Liftoff.prototype.buildEnvironment = function (opts) {
     var configFile;
     try {
       configFile = require(configFilePath);
-    } catch (e) {
+    } catch {
       // TODO: Consider surfacing the `require` error
       throw new Error(
         "Encountered error when loading config file: " + configFilePath,
@@ -223,7 +223,9 @@ Liftoff.prototype.buildEnvironment = function (opts) {
       paths: paths,
     });
     modulePackage = silentRequire(fileSearch("package.json", [modulePath]));
-  } catch (e) {}
+  } catch {
+    // Failures are ignored
+  }
 
   // if we have a configuration but we failed to find a local module, maybe
   // we are developing against ourselves?
